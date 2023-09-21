@@ -1,0 +1,73 @@
+1. Cherry Pick:
+Cherry picking involves selecting a specific commit from one branch and applying it to another. This can be useful when you want to bring changes from one branch to another without merging the entire branch.. 
+To cherry-pick a commit, we can use the command:
+--  git cherry-pick <commit-hash>
+Example:
+=> First we ensure that we are working on the main branch.
+--  $ git checkout main
+=> Then we execute the cherry-pick with the following command:
+-- $ git cherry-pick f
+=> Once executed our Git history will look like:
+a - b - c - d - f   Main
+         \
+           e - f - g Feature
+
+
+2. Rebase:
+Rebase is a way to incorporate changes from one branch onto another by moving or reapplying commits. It can help create a linear history and avoid merge commit clutter. However, it rewrites commit history, which can be problematic if shared with others.
+
+To perform a rebase:
+   git checkout feature-advanced-demo
+   git rebase main
+
+Example:
+=> $ git checkout experiment
+=> $ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: added staged command
+
+
+3. Stash:
+Stashing allows you to temporarily save your changes without committing them. This is useful when you need to switch to a different branch for a quick fix, and you don't want to commit incomplete work.
+
+To stash and apply changes:
+   git stash
+   # Do other work
+   git stash apply
+
+Example:
+=> Create Stash
+-- $ git stash  
+"Add new files"
+-- $ git stash save "Add new files"  
+=> Get list of stash
+-- $ git stash list  
+=> Stash Appply
+-- $ git stash apply '123456789'
+
+
+4. Reset:
+Reset moves the branch pointer to a specific commit, effectively changing the state of the branch. There are three types of reset:
+
+    --soft: Moves the branch pointer only, keeping changes staged.
+    --mixed: Moves the branch pointer and unstages changes, preserving them in the working directory.
+    --hard: Moves the branch pointer, unstages changes, and discards them from the working directory.
+
+To reset to a specific commit:
+   git reset <commit-hash> --hard
+Example:
+-- $ git add data_acquisition.py data_preprocessing.py
+-- $ git add data
+-- $ git commit -m "added data acquisition and script"
+-- $ git reset --soft HEAD
+-- $ git add model_training.py
+-- $ git commit -m "added all the python scripts"
+
+5. Git Diff:
+Git diff shows the differences between two versions of a file. You can use it to compare changes between commits, branches, or the working directory. It helps you understand what's been added, modified, or removed.
+
+To perform Git Diff:
+--  git AdvanceGitCommands.txt
+
+Example:
+-- $ diff --git a/diff_test.txt b/diff_test.txt
